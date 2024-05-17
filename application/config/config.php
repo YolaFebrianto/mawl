@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 https://yolafebrianto.000webhostapp.com/mawl/
 */
-$config['base_url'] = 'http://localhost/mawl/';
+$config['base_url'] = 'http://localhost/projects/mawl/';
 
 /*
 |--------------------------------------------------------------------------
