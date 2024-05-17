@@ -20,7 +20,10 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->model('M_pildun');
+		//$this->load->view('welcome_message');
+		$data['allm'] = $this->M_pildun->all_ost()->result();
+		$this->load->view('crud/all_ost',$data);
 	}
 
 	public function tokenisasi()
@@ -48,50 +51,6 @@ class Welcome extends CI_Controller {
 				$hasil_filtering[] = $value;
 			}
 		}
-
-		$hasil_filtering2 = $this->input->post('hasil_filtering');
-		$hasil_filtering3 = explode(', ', $hasil_filtering2);
-		$data_stemming = $this->db->get('stemming')->result();
-		$array_stemming = [];
-		$hasil_stemming=[];
-		foreach ($data_stemming as $key => $value) {
-			$array_stemming[$value->token] = $value->kata_dasar;
-		}
-		foreach ($hasil_filtering3 as $key => $value) {
-			echo $value.'<br>';
-			if (!empty(@$array_stemming[$value])) {
-				$hasil_stemming[$value] = $array_stemming[$value];
-			}
-		}
-		print_r($hasil_filtering3);
-		echo "<br>";
-		print_r($array_stemming);
-		echo "<br>";
-		print_r($hasil_stemming);
-		die();
 		$this->load->view('welcome_message',['hasil_token'=>$hasil_token2,'hasil_filtering'=>$hasil_filtering]);
-	}
-
-	public function stemming()
-	{
-		$hasil_token = $this->input->post('hasil_token');
-		echo $hasil_token2 = explode(', ', $hasil_token);echo "<br>";
-		$hasil_filtering = $this->input->post('hasil_filtering');
-		echo $hasil_filtering2 = explode(', ', $hasil_filtering);
-		die();
-		$data_stemming = $this->db->get('stemming')->result();
-		$array_stemming = [];
-		$hasil_stemming=[];
-		foreach ($data_stemming as $key => $value) {
-			$array_stemming[$value->token] = $value->kata_dasar;
-		}
-		foreach ($hasil_filtering2 as $key => $value) {
-			if (!empty(@$array_stemming[$value])) {
-				$hasil_stemming[$value] = $array_stemming[$value];
-			}
-		}
-		print_r($hasil_stemming);
-		die();
-		$this->load->view('welcome_message',['hasil_token'=>$hasil_token2,'hasil_filtering'=>$hasil_filtering2,'hasil_stemming'=>$hasil_stemming]);
 	}
 }

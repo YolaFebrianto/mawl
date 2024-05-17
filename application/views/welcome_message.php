@@ -118,17 +118,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			}
 			echo "</table>";
 			echo $no.' kata';
-			$implode2 = implode(', ', $hasil_filtering);
 			echo form_open('welcome/filtering');
 	?>
 			<input type="hidden" name="hasil_token" value="<?=$implode; ?>">
 	<?php if (!isset($hasil_filtering)) { ?>
 			<input type="submit" name="btnsubmit2" value="Stopword Removal" class="btn btn-info">
-	<?php } else { ?>	
-			<input type="hidden" name="hasil_filtering" value="<?=$implode2; ?>">
-		<?php if (!isset($hasil_stemming)) { ?>
-				<input type="submit" name="btnsubmit3" value="Stemming" class="btn btn-info">
-		<?php } ?>
 	<?php } ?>
 			<a href="<?=site_url('welcome');?>" class="btn btn-default">Clear Data</a>
 	<?php

@@ -144,7 +144,7 @@
 				</div>
 				<div style="clear:both"></div>
 			</h1>
-			<a href="<?php echo base_url('pildun/insert_form'); ?>">Insert Hasil Pertandingan World Cup 2022</a>
+			<a href="<?php echo base_url('pildun/insert_form'); ?>">Insert Hasil Pertandingan <?php echo @$event_name['nama'].'-'.@$event_name['nama2'];?></a>
 		</section>
 
 		<section class="content">
@@ -199,7 +199,7 @@
 								        $bgcolor = 'yellow';
 								    }
 								    if ($crud->total_eps>13){
-								    	$bgcolor2 = 'gray';
+								        $bgcolor2 = 'gray';
 								    }
 								?>
 							<tr>

@@ -21,9 +21,9 @@
 		<!-- Logo -->
 		<a href="<?php echo base_url(); ?>" class="logo">
 			<!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>FWC</b></span>
+			<span class="logo-mini"><b><?php echo @$event_name['nama3']; ?></b></span>
 			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>FIFA</b> World Cup</span>
+			<span class="logo-lg"><b><?php echo @$event_name['nama']; ?></b></span>
 		</a>
 		<!-- Header Navbar: style can be found in header.less -->
 		<nav class="navbar navbar-static-top">
@@ -34,7 +34,7 @@
 			<div class="navbar-custom-menu">
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="#">QATAR 2022</a>
+						<a href="#"><?php echo @$event_name['nama2']; ?></a>
 					</li>
 				</ul>
 			</div>
@@ -78,7 +78,7 @@
 		<!-- <section class="content"> -->
 		<section class="content-header">
 			<h1>
-				FIFA WORLD CUP QATAR 2022 (GROUP STAGES)
+				<?php echo @$event_name['nama'].' '.@$event_name['nama2']; ?> (GROUP STAGES)
 				<div style="float:right;">
 					<!-- <a href="<?php//base_url('user/printExcel');?>" class="btn btn-sm btn-success">
 						<i class="fa fa-print"></i> Excel
@@ -93,9 +93,13 @@
 				<div class="box-body" style="overflow-x:scroll;">
 					<div class="row">
 						<?php
+						    $group_count=1;
+						    if(!empty(@$grupJml)){
+						        $group_count=$grupJml['jumlah_grup'];
+						    }
 							$grupTitle	= ['A','B','C','D','E','F','G','H'];
 							$grupArr	= [$grupA,$grupB,$grupC,$grupD,$grupE,$grupF,$grupG,$grupH];
-							for ($i=0; $i < 8; $i++) { 
+							for ($i=0; $i < $group_count; $i++) { 
 						?>
 						<div class="col-md-6 col-lg-6 col-xs-12 col-sm-12" style="height:370px;">
 							<h3>GROUP <?php echo @$grupTitle[$i]; ?></h3>

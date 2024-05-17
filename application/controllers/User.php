@@ -2,6 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User extends CI_Controller {
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->model('M_pildun');
+	}
 	public function index()
 	{
 /*$this->session->set_userdata('username','yola');
@@ -13,6 +18,7 @@ echo var_dump($resultdata);*/
 				'status'   => 1
 			];
 			$data['user'] = $this->db->get_where('tbluser',$where)->row_array();
+            $data['event_name'] = $this->M_pildun->event()->row_array();
 			$user_id = @$data['user']['id'];
 			$this->db->order_by('tahun','DESC');
 			$this->db->order_by('season','ASC');
@@ -55,10 +61,10 @@ echo var_dump($resultdata);*/
 		return $content;
 	}
 	public function login(){
-		//$username = $this->input->post('username');
-		//$password = md5($this->input->post('password'));
-		$username='yola';
-		$password=md5('12345');
+		$username = $this->input->post('username');
+		$password = md5($this->input->post('password'));
+// 		$username='yola';
+// 		$password=md5('12345');
 		$where = [
 			'username' => $username,
 			'password' => $password,
@@ -80,6 +86,7 @@ echo var_dump($resultdata);*/
 				'username' => $this->session->userdata('username'),
 				'status'   => 1
 			];
+            $data['event_name'] = $this->M_pildun->event()->row_array();
 			$data['user'] = $this->db->get_where('tbluser',$where)->row_array();
 			$user_id = @$data['user']['id'];
 			$data['title'] = 'Jadwal dan Hari Rilis';
@@ -104,6 +111,7 @@ echo var_dump($resultdata);*/
 			'username' => $this->session->userdata('username'),
 			'status'   => 1
 		];
+		$data['event_name'] = $this->M_pildun->event()->row_array();
 		$data['user'] = $this->db->get_where('tbluser',$where)->row_array();
 		$user_id = @$data['user']['id'];
 		$this->db->order_by('tahun','DESC');

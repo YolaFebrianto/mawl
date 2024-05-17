@@ -52,13 +52,17 @@
 			    <a href="<?=base_url('user/demoAccount');?>">Akun Demo</a>
 			</div>
 			<div class="social-auth-links text-center">
+			    <a href="<?=base_url('welcome');?>">Naruto OST</a>
+			</div>
+			<div class="social-auth-links text-center">
 				<?php if($this->session->flashdata('error') != ''): ?>
 				<p id="notif">
 					<?= $this->session->flashdata('error'); ?>
 				</p>
 				<?php endif; ?>
 			</div>
-			<a href="https://myanimelist.net/news/66018136">All Platform Spring 2022</a>
+			<a href="https://myanimelist.net/news/70824865">
+			    All Platform Spring 2024</a>
 		</div>	
 	</div>
 

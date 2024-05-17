@@ -9,11 +9,14 @@ class Pildun extends CI_Controller {
 	}
 	public function index()
 	{
+	    $data['event_name'] = $this->M_pildun->event()->row_array();
 		$data['allm'] = $this->M_pildun->all_match()->result();
 		$this->load->view('crud/pildun',$data);
 	}
 	public function grup()
 	{
+	    $data['event_name'] = $this->M_pildun->event()->row_array();
+	    $data['grupJml'] = $this->M_pildun->grup_count()->row_array();
 		$data['grupA'] = $this->M_pildun->grup('A')->result();
 		$data['grupB'] = $this->M_pildun->grup('B')->result();
 		$data['grupC'] = $this->M_pildun->grup('C')->result();
@@ -26,12 +29,14 @@ class Pildun extends CI_Controller {
 	}
 	public function rekap()
 	{
+	    $data['event_name'] = $this->M_pildun->event()->row_array();
 		$data['alls'] = $this->M_pildun->all_nations()->result();
 		$this->load->view('crud/pildun_rekap',$data);
 	}
 	public function insert_form()
 	{
 		if ($this->session->userdata('username') != '') {
+	        $data['event_name'] = $this->M_pildun->event()->row_array();
 			$data['alln'] = $this->M_pildun->all_nations_list()->result();
 			$this->load->view('crud/pildun_form',$data);
 		} else {
@@ -41,6 +46,7 @@ class Pildun extends CI_Controller {
 	public function insert()
 	{
 		if ($this->session->userdata('username') != '') {
+	        $event_name = $this->M_pildun->event()->row_array();
 			$tgl = date('Y-m-d',strtotime($this->input->post('tanggal')));
 			$data = [
 				'negara1'	=> $this->input->post('negara1'),
@@ -50,6 +56,7 @@ class Pildun extends CI_Controller {
 				'babak'		=> $this->input->post('babak'),
 				'tanggal'	=> $tgl,
 				'keterangan'=> $this->input->post('keterangan'),
+				'event_id'  => @$event_name['id'],
 			];
 			$cek = $this->db->insert('pertandingan',$data);
 			if ($cek) {
